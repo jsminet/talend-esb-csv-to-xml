@@ -1,0 +1,61 @@
+package beans;
+
+import java.io.Serializable;
+
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
+
+import org.apache.camel.dataformat.bindy.annotation.CsvRecord;
+import org.apache.camel.dataformat.bindy.annotation.DataField;
+import org.apache.commons.lang.builder.ReflectionToStringBuilder;
+import org.apache.commons.lang.builder.ToStringStyle;
+
+@XmlRootElement
+@XmlType
+@CsvRecord(separator = ",", skipFirstLine = true)
+public class Entity implements Serializable {
+
+	/** Generated UUID. */
+	private static final long serialVersionUID = -691549805449392192L;
+	
+	@DataField(pos = 1)
+	private String line;
+	@DataField(pos = 2)
+	private String value;
+	@DataField(pos = 3)
+	private String other;
+
+	@XmlElement
+	public String getLine() {
+		return line;
+	}
+
+	public void setLine(String line) {
+		this.line = line;
+	}
+
+	@XmlElement
+	public String getValue() {
+		return value;
+	}
+
+	public void setValue(String value) {
+		this.value = value;
+	}
+	
+	@XmlElement
+	public String getOther() {
+		return other;
+	}
+
+	public void setOther(String other) {
+		this.other = other;
+	}
+
+	@Override
+	public String toString() {
+		return ReflectionToStringBuilder.toString(this,
+				ToStringStyle.MULTI_LINE_STYLE);
+	}
+}
